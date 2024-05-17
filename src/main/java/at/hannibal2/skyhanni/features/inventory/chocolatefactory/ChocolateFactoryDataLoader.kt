@@ -370,7 +370,6 @@ object ChocolateFactoryDataLoader {
         //  No best upgrade or cant afford best upgrade
         if (bestUpgrade == null || (bestUpgrade.price ?: Long.MAX_VALUE) > remainingChocolate) {
             ChocolateFactoryAPI.bestUpgradeConfig = list.associateBy { it.slotIndex }
-            println(ChocolateFactoryAPI.bestUpgradeConfig)
             return
         }
 

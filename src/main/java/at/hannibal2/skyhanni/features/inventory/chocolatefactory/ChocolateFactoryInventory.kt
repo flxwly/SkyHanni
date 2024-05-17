@@ -25,10 +25,13 @@ object ChocolateFactoryInventory {
         if (!ChocolateFactoryAPI.inChocolateFactory) return
         if (!config.highlightUpgrades) return
 
-
         for (slot in InventoryUtils.getItemsInOpenChest()) {
             if (slot.stack == null) continue
             val slotIndex = slot.slotNumber
+
+            if (slotIndex == ChocolateFactoryAPI.bestPossibleSlot) {
+                slot drawBorder LorenzColor.GOLD.addOpacity(150)
+            }
 
             if (slotIndex in ChocolateFactoryAPI.bestUpgradeConfig.keys) {
                 val current = ChocolateFactoryAPI.factoryUpgrades.find { it.slotIndex == slotIndex } ?: continue
@@ -46,10 +49,6 @@ object ChocolateFactoryInventory {
                     }
                     event.drawSlotText(slot.xDisplayPosition + 18, slot.yDisplayPosition, color.getChatColor() + upgrade.level, 1f)
                 }
-            }
-
-            if (slotIndex == ChocolateFactoryAPI.bestPossibleSlot) {
-                slot drawBorder LorenzColor.GOLD.addOpacity(150)
             }
         }
     }
